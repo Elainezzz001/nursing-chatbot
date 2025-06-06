@@ -1,6 +1,14 @@
 import streamlit as st
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Configure API URL based on environment
+API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 st.set_page_config(
     page_title="Nurse Ally - Pediatric Assistant",
@@ -44,7 +52,7 @@ if prompt:
     try:
         # Get bot response from backend
         response = requests.post(
-            "http://localhost:8000/ask",
+            f"{API_URL}/ask",
             json={"query": prompt},
             timeout=30
         )
@@ -77,6 +85,20 @@ with st.sidebar:
     - Treatment guidelines
     - Quick reference information
     """)
+    
+    # File uploader for knowledge base
+    st.subheader("Knowledge Base")
+    uploaded_file = st.file_uploader("Upload PDF to Knowledge Base", type="pdf")
+    if uploaded_file is not None:
+        try:
+            files = {"file": uploaded_file}
+            response = requests.post(f"{API_URL}/upload", files=files)
+            if response.status_code == 200:
+                st.success("File uploaded and processed successfully!")
+            else:
+                st.error("Error uploading file")
+        except Exception as e:
+            st.error(f"Error: {str(e)}")
     
     if st.button("Clear Chat History"):
         st.session_state.messages = []

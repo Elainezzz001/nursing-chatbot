@@ -1,0 +1,21 @@
+{
+    "name": "Nursing Chatbot Backend",
+    "description": "A pediatric nursing assistant chatbot backend",
+    "keywords": ["python", "fastapi", "nlp", "healthcare"],
+    "repository": "https://github.com/Elainezzz001/nursing-chatbot",
+    "env": {
+        "OPENAI_API_KEY": {
+            "description": "Your OpenAI API key",
+            "required": true
+        },
+        "USE_OPENAI": {
+            "description": "Set to 'true' to use OpenAI instead of local LMStudio",
+            "value": "true"
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}

@@ -1,25 +1,67 @@
 # === backend.py ===
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 import faiss, numpy as np, requests
-import os, re, json
+import os, datetime
+from dotenv import load_dotenv
+import re, json
 from typing import Optional
+import openai
+
+# Load environment variables
+load_dotenv()
+
+# Configure OpenAI
+openai.api_key = os.getenv("OPENAI_API_KEY")
+USE_OPENAI = os.getenv("USE_OPENAI", "false").lower() == "true"
 
 # === Load Chunks ===
-CHUNK_PATH = os.path.join("vectorstore", "chunks.txt")
-INDEX_PATH = os.path.join("vectorstore", "index.faiss")
-STRUCTURED_JSON = os.path.join("vectorstore", "structured_data.json")
+DATA_DIR = os.getenv("DATA_DIR", "data")
+CHUNK_PATH = os.path.join(DATA_DIR, "chunks.txt")
+INDEX_PATH = os.path.join(DATA_DIR, "index.faiss")
+STRUCTURED_JSON = os.path.join(DATA_DIR, "structured_data.json")
+LMSTUDIO_URL = os.getenv("LMSTUDIO_URL", "http://127.0.0.1:1234")
 
-with open(CHUNK_PATH, encoding="utf-8") as f:
-    chunks = [c.strip() for c in f.read().split("\n\n") if c.strip()]
+# Ensure data files exist
+def init_data_files():
+    if not os.path.exists(DATA_DIR):
+        os.makedirs(DATA_DIR)
+    
+    # Initialize empty files if they don't exist
+    if not os.path.exists(CHUNK_PATH):
+        with open(CHUNK_PATH, "w", encoding="utf-8") as f:
+            f.write("")
+    
+    if not os.path.exists(STRUCTURED_JSON):
+        with open(STRUCTURED_JSON, "w", encoding="utf-8") as f:
+            json.dump([], f)
 
-with open(STRUCTURED_JSON, encoding="utf-8") as f:
-    structured_data = json.load(f)
+init_data_files()
 
-index = faiss.read_index(INDEX_PATH)
-embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
+# Load data files
+try:
+    with open(CHUNK_PATH, encoding="utf-8") as f:
+        chunks = [c.strip() for c in f.read().split("\n\n") if c.strip()]
+
+    with open(STRUCTURED_JSON, encoding="utf-8") as f:
+        structured_data = json.load(f)
+
+    if os.path.exists(INDEX_PATH):
+        index = faiss.read_index(INDEX_PATH)
+    else:
+        # Initialize empty index if file doesn't exist
+        embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
+        dimension = embedder.get_sentence_embedding_dimension()
+        index = faiss.IndexFlatL2(dimension)
+except Exception as e:
+    print(f"Error loading data files: {e}")
+    chunks = []
+    structured_data = []
+    embedder = SentenceTransformer("BAAI/bge-small-en-v1.5")
+    dimension = embedder.get_sentence_embedding_dimension()
+    index = faiss.IndexFlatL2(dimension)
 
 # === FastAPI Setup ===
 app = FastAPI()
@@ -93,18 +135,29 @@ def get_relevant_chunks(query, top_k=5):
     return [chunks[i] for i in I[0]]
 
 def call_lmstudio(messages):
-    try:
-        response = requests.post(
-            "http://127.0.0.1:1234/v1/chat/completions",
-            json={"model": "tinyllama-1.1b-chat-v1.0", "messages": messages, "temperature": 0.7},
-            timeout=60  # increased timeout
-        )
-        result = response.json()
-        if "choices" in result and result["choices"]:
-            return result["choices"][0]["message"]["content"]
-        return "⚠️ Sorry, I couldn’t generate a response."
-    except Exception as e:
-        return f"⚠️ Backend error: {str(e)}"
+    if USE_OPENAI:
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=messages,
+                temperature=0.7
+            )
+            return response.choices[0].message.content
+        except Exception as e:
+            return f"⚠️ OpenAI API error: {str(e)}"
+    else:
+        try:
+            response = requests.post(
+                f"{LMSTUDIO_URL}/v1/chat/completions",
+                json={"model": "tinyllama-1.1b-chat-v1.0", "messages": messages, "temperature": 0.7},
+                timeout=60
+            )
+            result = response.json()
+            if "choices" in result and result["choices"]:
+                return result["choices"][0]["message"]["content"]
+            return "⚠️ Sorry, I couldn't generate a response."
+        except Exception as e:
+            return f"⚠️ Backend error: {str(e)}"
 
 # === Main Route ===
 @app.post("/ask")
@@ -134,3 +187,7 @@ def ask(req: Query):
     answer += "\n\n💡 Suggested follow-ups:\n- " + "\n- ".join(suggestions)
 
     return {"response": answer}
+
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "timestamp": datetime.datetime.now().isoformat()}
