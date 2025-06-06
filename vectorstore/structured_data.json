@@ -1,0 +1,51 @@
+[
+  {
+    "Age": "Neonate",
+    "Heart Rate\n(beats/min)": "120\u2013180",
+    "Respiratory Rate\n(breaths/min)": "40\u201360",
+    "Systolic Blood\nPressure (mmHg)": "60\u201380"
+  },
+  {
+    "Age": "Infant (1 mth to 1 yr)",
+    "Heart Rate\n(beats/min)": "110\u2013160",
+    "Respiratory Rate\n(breaths/min)": "30\u201340",
+    "Systolic Blood\nPressure (mmHg)": "70\u201390"
+  },
+  {
+    "Age": "Toddler (1\u20132 yr)\nYoung child (2\u20137 yr)",
+    "Heart Rate\n(beats/min)": "100\u2013150",
+    "Respiratory Rate\n(breaths/min)": "25\u201335",
+    "Systolic Blood\nPressure (mmHg)": "80\u201395"
+  },
+  {
+    "Age": "Older child (7\u201312 yr)",
+    "Heart Rate\n(beats/min)": "80\u2013120",
+    "Respiratory Rate\n(breaths/min)": "20\u201325",
+    "Systolic Blood\nPressure (mmHg)": "100\u2013120"
+  },
+  {
+    "Assessment": "Patency",
+    "Clinical Features": "If compromised:\n\u2022 Abnormal breath sounds\n(stridor, stertor, snoring,\ngurgling, voice hoarseness)\n\u2022 Drooling\n\u2022 Tracheal tug\n\u2022 Dyspnoea\n\u2022 Respiratory distress\n\u2022 Paradoxical breathing\n\u2022 Inability to lie flat",
+    "Management": "Ensure airway patency\nAvoid agitating child\nOptimise head position:\n\u2022 Continue child\u2019s adopted posture if\npossible\n\u2022 Infant: neutral position\n\u2022 Child: head tilt, chin lift\n\u2022 Jaw thrust for suspected cervical injury\nConsider:\n\u2022 Suction\n\u2022 Oropharyngeal or nasopharyngeal airway\n\u2022 Oxygen (humidified if in respiratory\ndistress)\n\u2022 PEEP if upper airway obstruction\n(If severe, escalate to a senior/\nanaesthetist for consideration for\nendotracheal intubation)"
+  },
+  {
+    "Assessment": "\u2022 Adequacy of\noxygenation\nand ventilation\n\u2022 Respiratory\nmuscle\nendurance",
+    "Clinical Features": "Vital signs\n\u2022 Tachypnoea or bradypnoea\n\u2022 Oxygen desaturation or\ncyanosis\nEffort of breathing\n\u2022 Limited ability to talk/fatigue\n\u2022 Symmetry and quality of chest\nrise/fall\n\u2022 Increased work of breathing\n(nasal flaring, grunting, head\nbobbing, accessory muscle\nuse, retractions)\n\u2022 Auscultation findings (reduced\nair entry, wheezing or\ncrepitations)\n\u2022 Abnormal breathing pattern\n(shallow breathing, Kussmaul\nbreathing, Cheyne-Stokes)\nSecondary signs of inadequate\noxygenation or ventilation:\n\u2022 Agitation\n\u2022 Altered mental state\n\u2022 Tachycardia/bradycardia\n\u2022 Pallor\n\u2022 Cool peripheries",
+    "Management": "Consider:\n\u2022 Elevating head of bed\n\u2022 Oxygen supplementation\n\u2022 Institute specific therapy for the\nunderlying cause of respiratory failure\n\u2022 Medications, e.g. bronchodilators\nfor asthma, diuretics in heart failure,\nantibiotics for pneumonia, etc.\n\u2022 Arterial/Capillary blood gas\n\u2022 Non-invasive ventilation, e.g. High flow\nnasal cannulae, CPAP, BiPAP\n\u2022 Invasive mechanical ventilation\nIf the child is not breathing, commence\nbag-mask ventilation and prepare for\nendotracheal intubation\nIndications for intubation:\n\u2022 Reduced respiratory drive\n\u2022 Loss of protective airway reflexes\n\u2022 Intracranial hypertension\n\u2022 Severe airway obstruction\n\u2022 Respiratory failure/fatigue/apnoea\n\u2022 Shock\n\u2022 To reduce metabolic demand"
+  },
+  {
+    "Assessment": "Efficacy of\ncirculation",
+    "Clinical Features": "Heart Rate/Rhythm:\n\u2022 Tachycardia/bradycardia\n\u2022 Arrhythmia\nBlood Pressure:\n\u2022 Narrow/wide pulse pressure\n\u2022 Hypotension (late sign)\nAssessment of Perfusion\n\u2022 Pallor/cyanosis\n\u2022 Weak/thready pulses\n\u2022 Flash or delayed capillary refill\ntime (>2 s)\n\u2022 Cool/mottled peripheries\nSecondary signs:\n\u2022 Reduced conscious level\n\u2022 Reduced urine output\n\u2022 Tachypnoea or bradypnoea\nPraecordium:\n\u2022 New murmur\n\u2022 Gallop rhythm\n\u2022 Hyperdynamic praecordium",
+    "Management": "\u2022 Determine cardiac rhythm and treat\naccordingly\n\u2022 Obtain large bore intravenous access x 2\n(consider intraosseous access early)\n\u2022 Arterial/capillary blood gas (including\nlactate if possible)\n\u2022 Fluid resuscitation (10\u201320 ml/kg bolus\nof 0.9% sodium chloride for acute\nresuscitation or over 15\u201360 min if less\nacute (up to 40 ml/kg, with caution\nif suspicious of cardiogenic shock \u2014\nconsider early inotropic support)\n\u2022 Consider blood products for haemorrhagic\nshock, severe anaemia or coagulopathic\nstates\n\u2022 Consider early antibiotics (within 1 h)\n\u2022 Consider peripheral inotropes/\nvasopressors\n\u2022 Correct electrolyte imbalances\nConsider early endotracheal intubation\nand assisted ventilation in shock\n(reduces work of breathing and\ncardiac metabolic demands, especially\nin cardiogenic and septic shock)\nIf there are no signs of circulation\n(no pulse, bradycardia <60/min),\ncommence cardiac compressions"
+  },
+  {
+    "Assessment": "Altered mental\nstate",
+    "Clinical Features": "\u2022 Irritable\n\u2022 Lethargic\n\u2022 Asymmetrical pupillary\nreflexes\n\u2022 Tense fontanelles\n\u2022 Focal neurological deficits\n\u2022 Rapidly decreasing conscious\nlevel\n\u2022 Seizures",
+    "Management": "\u2022 Avoid hypoxia or hypercarbia\n\u2022 Avoid hyperthermia\n\u2022 Avoid hypo/hypertension\n\u2022 Correct metabolic derangements\n(hypoglycaemia, symptomatic hypo/\nhypernatraemia or hypo/hypercalcaemia)\n\u2022 Manage seizures\nConsider intracranial pathologies:\n\u2022 Stroke/haemorrhage\n\u2022 Meningitis/encephalitis/abscess\n\u2022 Ventriculo-peritoneal shunt complications"
+  },
+  {
+    "Assessment": "Assess child,\nequipment and\nenvironment\nsystematically",
+    "Clinical Features": "\u2022 Hypo/hyperthermia\n\u2022 Rash, petechiae, purpura\n\u2022 Signs of injury (spinal injury,\npenetrating injury, flail chest,\ndeformities, open wounds,\nburns, ongoing bleeding)",
+    "Management": "\u2022 Correct hypothermia\n\u2022 Analgesia/sedation\n\u2022 Secure tubes/lines\n\u2022 Secure haemostasis\n\u2022 Clean open wounds\n\u2022 Stabilise injuries\n\u2022 Consider cervical collar/spinal nursing"
+  }
+]
